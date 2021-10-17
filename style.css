@@ -1,0 +1,84 @@
+
+
+body {
+    /* CSS HEX */
+    --bigtext: #b7c0ee;
+    --text: #cbf3d2;
+    --acolor: #536271;
+    --fg: #3e4c5e;
+    --bg: #2c3d55;
+    
+    font-family: 'Itim', cursive;
+    background-color: var(--bg);
+
+}
+
+h1 {
+    color: var(--bigtext);
+    text-align: center;
+    font-size: 4em;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.ltext {
+    color: var(--text);
+    text-align: center; 
+}
+
+.stext {
+    color: var(--text);
+    
+}
+
+.pageContainer {
+    display: grid; 
+    grid-template-columns: 15% 70% 15%; 
+    gap: 0px 0px; 
+  }
+
+.pageCenter {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#movieList {
+    width: 100%;
+    border: solid slategray;
+    border-width: thin;
+    border-radius: 4px;
+    padding: 0px 24px 12px 24px;
+    
+}
+
+
+.movieItem {
+    margin-top: 12px;
+}
+
+.movieRank {
+    border-right: solid thin #666;
+    padding: 8px 4px 8px 0px;
+    margin: 4px 4px 4px 0px;
+}
+
+.movieThumb{
+    width: 32px;
+    vertical-align: middle;
+}
+
+.movieTitle {
+
+
+}
+
+.movieRelease {
+
+
+}
+
+.movieRating {
+    justify-self: right;
+}
