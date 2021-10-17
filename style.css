@@ -53,6 +53,9 @@ h1 {
     
 }
 
+.loading {
+    animation: rotation 2s infinite linear;
+}
 
 .movieItem {
     margin-top: 12px;

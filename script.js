@@ -2,6 +2,7 @@ var movieData;
 
 async function renderList(json) {
     var itemCopy = document.getElementsByClassName("movieItem")[0].cloneNode(true);
+    itemCopy.getElementsByClassName("loading")[0].classList.remove("loading")
     var tempHTML = "";
     json.forEach(movie => {
         itemCopy.getElementsByClassName("movieRank")[0].innerHTML = movie.rank
