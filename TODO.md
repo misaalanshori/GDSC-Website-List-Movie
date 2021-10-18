@@ -1,3 +1,4 @@
 # To-Do
-- Create a way to generate the star rating from the rating number
-- Create the search feature
+- done
+- maybe some more cleaning up?
+- add a backend maybe?

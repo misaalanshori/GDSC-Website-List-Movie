@@ -1,7 +1,3 @@
-var movieData;
-
-
-
 async function getJSON() {
     const response = await fetch("movies.json");
     const movieJSON = await response.json()
@@ -9,6 +5,7 @@ async function getJSON() {
 }
 
 function renderList(json) {
+    // this function takes the list template, duplicates it and then fills it with the data
     let itemCopy = document.getElementsByClassName("movieItem")[0].cloneNode(true);
     itemCopy.getElementsByClassName("loading")[0].classList.remove("loading")
     let tempHTML = "";
@@ -22,6 +19,7 @@ function renderList(json) {
 }
 
 function processSearch(context) {
+    // this is the function that gets called by the search bar
     let movieItems = document.getElementById("movieList").children
     let searchTerms = context.value.split(" ")
     if (context.value != "") {
@@ -44,7 +42,6 @@ function processSearch(context) {
 
 function renderModal(number, json) {
     let movieDat = json[number-1]
-    let modal = document.getElementById("movieModal")
     document.getElementById("mvPoster").src=movieDat.image
     document.getElementById("mvTitle").innerHTML=movieDat.title
     document.getElementById("mvReleaseDate").innerHTML=movieDat.releasedate
@@ -79,6 +76,7 @@ function renderModal(number, json) {
 }
 
 function openModal(context, modal) {
+    // updates and opens the modal
     let itemNum = context.getElementsByClassName("movieRank")[0].innerHTML
     renderModal(itemNum, movieData)    
     modal.style.display = "block"
@@ -87,22 +85,22 @@ function openModal(context, modal) {
 
 
 
+var movieData;
+// Starting point for rendering the list
+getJSON().then(retval => {
+    movieData = retval
+    renderList(retval)
+})
 
 
-
-
+// Stuff for the modal
 var movieModal = document.getElementById("movieModal");
 var closeButton = document.getElementsByClassName("closeModal")[0];
-
 
 var fullstar = movieModal.getElementsByClassName("fullstar")[0].cloneNode(true)
 var halfstar = movieModal.getElementsByClassName("halfstar")[0].cloneNode(true)
 var emptystar = movieModal.getElementsByClassName("emptystar")[0].cloneNode(true)
 
-getJSON().then(retval => {
-    movieData = retval
-    renderList(retval)
-})
 
 // When the user clicks on (x), close the modal
 closeButton.onclick = function () {
