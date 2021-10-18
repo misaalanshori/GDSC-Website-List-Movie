@@ -8,16 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Top 20 Movies</title>
 </head>
 <body>
+
     <div class="pageContainer">
         <div class="pageCenter">
             <h1>Top 20 Movies</h1>
             <p class="ltext">Top 20 Movies, data sourced from IMDB</p>
             <div id="movieList">
 
-                <div class="movieItem">
+                <div class="movieItem" onclick="openModal(this, movieModal)">
                     <span class="stext movieRank">0</span>
                     <img class="movieThumb loading" src="./img/loading.png">
                     <a class="stext movieTitle">Loading Data...</a>
@@ -26,6 +28,42 @@
             </div>
         </div>
     </div>
+
+    <div id="movieModal" class="modal">
+
+        <!-- Modal content -->
+        <span class="closeModal">&times;</span>
+        <div class="modalContent">
+
+            
+            
+            <div class="movieInfo">
+
+                <img class="moviePoster" src="./img/fightclub.jpg">
+
+                <div class="aboutMovie"> 
+                    <a name="movieTitle" class="sltext">Fight Club</a>
+                    <span name="releasedate" class="sltext block">1999</span>
+                    <div id="starRating" class="star"> 
+                        <span name="fullstar" class="fa fa-solid fa-star"></span>
+                        <span name="halfstar" class="fa fa-solid fa-star-half-stroke"></span>
+                        <span name="emptystar" class="fa fa-regular fa-star"></span>
+                    </div>
+                    <a name="ratingNum" class="sltext">8.8/10</a>
+                </div>
+             
+            </div>
+
+            <div class="movieDesc">
+                <h4 class="sltext">Description:</h4>
+                <p id="movieDesc" class="sltext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <a id="imdbpage" class="centerText boldText kindabigText" href="#" target="_blank">IMDB Page</a>
+            </div>
+
+        </div>
+      
+    </div>
+
     <script src="./script.js"></script>
 </body>
 </html>
