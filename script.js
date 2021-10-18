@@ -21,15 +21,61 @@ function renderList(json) {
     document.getElementById("movieList").innerHTML = tempHTML;
 }
 
+function processSearch(context) {
+    let movieItems = document.getElementById("movieList").children
+    let searchTerms = context.value.split(" ")
+    if (context.value != "") {
+        for (let index = 0; index < movieItems.length; index++) {
+            const element = movieItems[index];
+            let text = element.getElementsByClassName("movieTitle")[0].innerText
+            if (searchTerms.every(term => text.toLowerCase().includes(term.toLowerCase()))) {
+                element.style.display = "block"
+            } else {
+                element.style.display = "none"
+            }
+        }
+    } else {
+        for (let index = 0; index < movieItems.length; index++) {
+            const element = movieItems[index]
+            element.style.display = "block"
+        }
+    }
+}
+
 function renderModal(number, json) {
-    let movieData = json[number-1]
+    let movieDat = json[number-1]
     let modal = document.getElementById("movieModal")
-    document.getElementById("mvPoster").src=movieData.image
-    document.getElementById("mvTitle").innerHTML=movieData.title
-    document.getElementById("mvReleaseDate").innerHTML=movieData.releasedate
-    document.getElementById("mvRatingNum").innerHTML=movieData.rating + "/10"
-    document.getElementById("movieDesc").innerHTML=movieData.desc
-    document.getElementById("imdbpage").href=movieData.link
+    document.getElementById("mvPoster").src=movieDat.image
+    document.getElementById("mvTitle").innerHTML=movieDat.title
+    document.getElementById("mvReleaseDate").innerHTML=movieDat.releasedate
+    document.getElementById("mvRatingNum").innerHTML=movieDat.rating + "/10"
+    document.getElementById("movieDesc").innerHTML=movieDat.desc
+    document.getElementById("imdbpage").href=movieDat.link
+
+    // This next part renders the star ratings, theres probably a better way. but whatever
+    let starRating = document.getElementById("starRating")
+    starRating.innerHTML = ""
+    let starNum = movieDat.rating
+    let currentStar = 0;
+    while (currentStar < 10) {
+        if (starNum - 1 > 0) {
+            starRating.appendChild(fullstar.cloneNode())
+            starNum -= 1
+            currentStar += 1
+        } else if (starNum == 1) {
+            starRating.appendChild(fullstar.cloneNode())
+            starNum -= 1
+            currentStar += 1
+        } else if (starNum > 0 && starNum < 1) {
+            starRating.appendChild(halfstar.cloneNode())
+            starNum = 0
+            currentStar += 1
+        } else {
+            starRating.appendChild(emptystar.cloneNode())
+            currentStar += 1
+        }
+    }
+
 }
 
 function openModal(context, modal) {
