@@ -8,7 +8,7 @@ async function getJSON() {
     return movieJSON
 }
 
-async function renderList(json) {
+function renderList(json) {
     let itemCopy = document.getElementsByClassName("movieItem")[0].cloneNode(true);
     itemCopy.getElementsByClassName("loading")[0].classList.remove("loading")
     let tempHTML = "";
@@ -21,8 +21,20 @@ async function renderList(json) {
     document.getElementById("movieList").innerHTML = tempHTML;
 }
 
+function renderModal(number, json) {
+    let movieData = json[number-1]
+    let modal = document.getElementById("movieModal")
+    document.getElementById("mvPoster").src=movieData.image
+    document.getElementById("mvTitle").innerHTML=movieData.title
+    document.getElementById("mvReleaseDate").innerHTML=movieData.releasedate
+    document.getElementById("mvRatingNum").innerHTML=movieData.rating + "/10"
+    document.getElementById("movieDesc").innerHTML=movieData.desc
+    document.getElementById("imdbpage").href=movieData.link
+}
+
 function openModal(context, modal) {
-    // Update Modal Here
+    let itemNum = context.getElementsByClassName("movieRank")[0].innerHTML
+    renderModal(itemNum, movieData)    
     modal.style.display = "block"
 }
 
@@ -35,6 +47,11 @@ function openModal(context, modal) {
 
 var movieModal = document.getElementById("movieModal");
 var closeButton = document.getElementsByClassName("closeModal")[0];
+
+
+var fullstar = movieModal.getElementsByClassName("fullstar")[0].cloneNode(true)
+var halfstar = movieModal.getElementsByClassName("halfstar")[0].cloneNode(true)
+var emptystar = movieModal.getElementsByClassName("emptystar")[0].cloneNode(true)
 
 getJSON().then(retval => {
     movieData = retval

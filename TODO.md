@@ -1,4 +1,3 @@
 # To-Do
-- Add Movie Descriptions to JSON Data
-- Add Movie IMDB link to JSON Data
-- Create Modal (which contains ratings, release date, description, and IMDB Link)
+- Create a way to generate the star rating from the rating number
+- Create the search feature
