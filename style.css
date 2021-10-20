@@ -147,13 +147,14 @@ p {
   /* Modal Content */
   .modalContent {
     background-color: var(--acolor);
-    margin: 15% auto; 
+    margin: 8% auto; 
     padding: 20px;
     border: none;
     border-radius: 4px;
     width: 60%;
   }
-  
+
+
   /* The Close Button */
   .closeModal {
     color: #aaa;
@@ -177,6 +178,7 @@ p {
     justify-self: center;
     vertical-align: middle;
     grid-column: 1;
+    max-width: 6cm;
 
 }
 
