@@ -113,3 +113,28 @@ window.onclick = function (event) {
         movieModal.style.display = "none";
     }
 }
+
+
+
+// ReactJS section starts here
+const e = React.createElement;
+const emojis = ["❤️","💪","🧠"] 
+
+
+// a lil easter egg i guess? its also just a reference component for the other components im making
+function madeBy() {
+  
+  const [state, setState] = React.useState(0)
+
+  function updateState() {
+    if (state != emojis.length - 1) {
+      setState(state + 1)
+    } else {
+      setState(0)
+    }
+  }
+
+  return <p className="stext centerText" onClick={updateState}>Made with {emojis[state]} by <a href="https://github.com/misaalanshori" target="_blank">M Isa Al Anshori</a></p>
+}
+
+ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));

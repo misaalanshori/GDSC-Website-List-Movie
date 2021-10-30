@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- this website uses Google Fonts and Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>Top 20 Movies</title>
+</head>
+<body>
+
+    <!-- The main page -->
+    <div class="pageContainer">
+        <div class="pageCenter">
+
+            <h1>Top 20 Movies</h1>
+            <p class="ltext">Top 20 Movies, data sourced from the IMDB</p>
+            <input type="text" id="myInput" oninput="processSearch(this)" placeholder="Search for a movie title">
+            <!-- The contents of this div is just a template (disguised as a loading screen) to be duplicated and filled with movie titles -->
+            <div id="movieList">
+
+                <div class="movieItem" onclick="openModal(this, movieModal)">
+                    <span class="stext movieRank">0</span>
+                    <img class="movieThumb loading" src="./img/loading.png">
+                    <a class="stext movieTitle">Loading Data...</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="movieModal" class="modal">
+
+        <!-- Modal content -->
+        <span class="closeModal">&times;</span>
+        <div class="modalContent">
+            
+            <div class="movieInfo">
+
+                <img id="mvPoster" class="moviePoster" src="./img/loading.png">
+
+                <div class="aboutMovie"> 
+                    <a id="mvTitle" class="sltext">Page is still loading</a>
+                    <span id="mvReleaseDate" class="sltext block">2020</span>
+                    <div id="starRating" class="star"> 
+                        <span class="fullstar fa fa-solid fa-star"></span>
+                        <span class="halfstar fa fa-solid fa-star-half-stroke"></span>
+                        <span class="emptystar fa fa-regular fa-star"></span>
+                    </div>
+                    <a id="mvRatingNum" class="sltext">420/03</a>
+                </div>
+             
+            </div>
+
+            <div class="movieDesc">
+                <h4 class="sltext">Description:</h4>
+                <p id="movieDesc" class="sltext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a id="imdbpage" class="centerText boldText kindabigText" href="#" target="_blank">IMDB Page</a>
+            </div>
+
+        </div>
+      
+    </div>
+    <div id="madeByCredits"></div>
+    
+    <!-- Jangan di maling pliss, bikinnya ini beberapa hari. oh iya sori ini commentsnya pake b.inggris, udah kebiasaan wkwk -->
+
+    <!-- Importing ReactJS -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- Load Script -->
+    <script src="./script.js"></script>
+</body>
+</html>
