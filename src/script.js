@@ -118,7 +118,7 @@ window.onclick = function (event) {
 
 // ReactJS section starts here
 const e = React.createElement;
-const emojis = ["❤️","💪","🧠"] 
+const emojis = ["❤️","🩸","🕒","🧠","💪"] 
 
 
 // a lil easter egg i guess? its also just a reference component for the other components im making

@@ -109,7 +109,7 @@ window.onclick = function (event) {
 
 
 const e = React.createElement;
-const emojis = ["❤️", "💪", "🧠"]; // a lil easter egg i guess? its also just a reference component for the other components im making
+const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"]; // a lil easter egg i guess? its also just a reference component for the other components im making
 
 function madeBy() {
   const [state, setState] = React.useState(0);
