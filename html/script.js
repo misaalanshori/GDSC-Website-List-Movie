@@ -106,25 +106,45 @@ const e = React.createElement;
 const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"];
 
 function MovieListObject(props) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "movieItem",
-    onClick: () => {
-      console.log("Hello Boi");
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "stext movieRank"
-  }, props.movieInfo["rank"]), /*#__PURE__*/React.createElement("img", {
-    className: "movieThumb",
-    src: props.movieInfo["image"]
-  }), /*#__PURE__*/React.createElement("a", {
-    className: "stext movieTitle"
-  }, props.movieInfo["title"]));
+  if (props.search == "" || props.search.every(term => props.movieInfo.title.toLowerCase().includes(term.toLowerCase()))) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "movieItem",
+      onClick: () => {
+        console.log("Placeholder stuff lmao");
+        console.log(props);
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "stext movieRank"
+    }, props.movieInfo["rank"]), /*#__PURE__*/React.createElement("img", {
+      className: "movieThumb",
+      src: props.movieInfo["image"]
+    }), /*#__PURE__*/React.createElement("a", {
+      className: "stext movieTitle"
+    }, props.movieInfo["title"]));
+  } else {
+    return /*#__PURE__*/React.createElement(React.Fragment, null);
+  }
 }
 
 function movieApp() {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MovieListObject, {
-    movieInfo: movieData[0]
-  }));
+  const [searchSentence, setSearch] = React.useState("");
+  const searchTerm = searchSentence.split(" ");
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Top 20 Movies (ReactJS edition)"), /*#__PURE__*/React.createElement("p", {
+    className: "ltext"
+  }, "Top 20 Movies, data sourced from the IMDB"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Search for a movie title",
+    value: searchSentence,
+    onChange: event => {
+      setSearch(event.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "movieList"
+  }, movieData.map(data => /*#__PURE__*/React.createElement(MovieListObject, {
+    key: data["rank"],
+    movieInfo: data,
+    search: searchTerm
+  }))));
 } // a lil easter egg i guess? its also just a reference component for the other components im making
 
 

@@ -23,7 +23,7 @@
             <p class="ltext">Top 20 Movies, data sourced from the IMDB</p>
             <input type="text" id="myInput" oninput="processSearch(this)" placeholder="Search for a movie title">
             <!-- The contents of this div is just a template (disguised as a loading screen) to be duplicated and filled with movie titles -->
-            <div id="movieList">
+            <div id="movieList" class="movieList">
 
                 <div class="movieItem" onclick="openModal(this, movieModal)">
                     <span class="stext movieRank">0</span>
@@ -35,20 +35,20 @@
 
 
 
-            <!-- React Workspace -->
-
-            <br>
-            <h1>Top 20 Movies (ReactJS edition)</h1>
-            <p class="ltext">Top 20 Movies, data sourced from the IMDB</p>
-
-            <div id="movieApp"></div>
-
-
-            <!-- End of React Workspace -->
+            
 
 
 
         </div>
+        <!-- React Workspace -->
+
+        <br>
+        
+
+        <div id="movieApp" class="pageCenter"></div>
+
+
+        <!-- End of React Workspace -->
     </div>
 
 

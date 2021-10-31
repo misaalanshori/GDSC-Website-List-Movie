@@ -86,7 +86,7 @@ p {
 }
 
 /* Movie List */
-#movieList {
+.movieList {
     width: 100%;
     border: solid slategray;
     border-width: thin;

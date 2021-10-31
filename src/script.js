@@ -117,21 +117,36 @@ const emojis = ["❤️","🩸","🕒","🧠","💪"]
 
 
 function MovieListObject(props) {
-    return (
-        <div className="movieItem" onClick={() => {console.log("Hello Boi")}}>
-            <span className="stext movieRank">{props.movieInfo["rank"]}</span>
-            <img className="movieThumb" src={props.movieInfo["image"]}></img>
-            <a className="stext movieTitle">{props.movieInfo["title"]}</a>
-        </div>
-    )
+
+    if ((props.search == "") || (props.search.every(term => props.movieInfo.title.toLowerCase().includes(term.toLowerCase())))) {
+        return (
+            <div className="movieItem" onClick={() => {console.log("Placeholder stuff lmao"); console.log(props)}}>
+                <span className="stext movieRank">{props.movieInfo["rank"]}</span>
+                <img className="movieThumb" src={props.movieInfo["image"]}></img>
+                <a className="stext movieTitle">{props.movieInfo["title"]}</a>
+            </div>
+        )
+    } else {
+        return (<></>)
+    }
 }
 
 function movieApp() {
-    return (
-        <div>
-            <MovieListObject movieInfo={movieData[0]}/>
+    const [searchSentence, setSearch] = React.useState("")
+    const searchTerm = searchSentence.split(" ") 
+
+    return (<>
+
+        <h1>Top 20 Movies (ReactJS edition)</h1>
+        <p className="ltext">Top 20 Movies, data sourced from the IMDB</p>
+
+        <input type="text" placeholder="Search for a movie title" value={searchSentence} onChange={(event) => {setSearch(event.target.value)}} />
+
+        <div className="movieList">
+            {movieData.map((data)=><MovieListObject key={data["rank"]} movieInfo={data} search={searchTerm}/>)}
         </div>
-    )
+
+    </>)
 }
 
 
