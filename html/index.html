@@ -17,74 +17,9 @@
 
     <!-- The main page -->
     <div class="pageContainer">
-        <div class="pageCenter">
-
-            <h1>Top 20 Movies</h1>
-            <p class="ltext">Top 20 Movies, data sourced from the IMDB</p>
-            <input type="text" id="myInput" oninput="processSearch(this)" placeholder="Search for a movie title">
-            <!-- The contents of this div is just a template (disguised as a loading screen) to be duplicated and filled with movie titles -->
-            <div id="movieList" class="movieList">
-
-                <div class="movieItem" onclick="openModal(this, movieModal)">
-                    <span class="stext movieRank">0</span>
-                    <img class="movieThumb loading" src="./img/loading.png">
-                    <a class="stext movieTitle">Loading Data...</a>
-                </div>
-
-            </div>
-
-
-
-            
-
-
-
-        </div>
-        <!-- React Workspace -->
-
-        <br>
-        
-
         <div id="movieApp" class="pageCenter"></div>
-
-
-        <!-- End of React Workspace -->
     </div>
 
-
-
-    <div id="movieModal" class="modal">
-
-        <!-- Modal content -->
-        <span class="closeModal">&times;</span>
-        <div class="modalContent">
-            
-            <div class="movieInfo">
-
-                <img id="mvPoster" class="moviePoster" src="./img/loading.png">
-
-                <div class="aboutMovie"> 
-                    <a id="mvTitle" class="sltext">Page is still loading</a>
-                    <span id="mvReleaseDate" class="sltext block">2020</span>
-                    <div id="starRating" class="star"> 
-                        <span class="fullstar fa fa-solid fa-star"></span>
-                        <span class="halfstar fa fa-solid fa-star-half-stroke"></span>
-                        <span class="emptystar fa fa-regular fa-star"></span>
-                    </div>
-                    <a id="mvRatingNum" class="sltext">420/03</a>
-                </div>
-             
-            </div>
-
-            <div class="movieDesc">
-                <h4 class="sltext">Description:</h4>
-                <p id="movieDesc" class="sltext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a id="imdbpage" class="centerText boldText kindabigText" href="#" target="_blank">IMDB Page</a>
-            </div>
-
-        </div>
-      
-    </div>
     <div id="madeByCredits"></div>
     
     <!-- Jangan di maling pliss, bikinnya ini beberapa hari. oh iya sori ini commentsnya pake b.inggris, udah kebiasaan wkwk -->

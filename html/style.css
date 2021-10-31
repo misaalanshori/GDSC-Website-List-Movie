@@ -132,7 +132,6 @@ p {
 
 /* Modal CSS */
 .modal {
-    display: none; /* Hidden by default */
     position: fixed;
     z-index: 1; /* Sit on top */
     left: 0;
