@@ -85,12 +85,7 @@ function openModal(context, modal) {
 
 
 
-var movieData;
-// Starting point for rendering the list
-getJSON().then(retval => {
-    movieData = retval
-    renderList(retval)
-})
+
 
 
 // Stuff for the modal
@@ -121,6 +116,27 @@ const e = React.createElement;
 const emojis = ["❤️","🩸","🕒","🧠","💪"] 
 
 
+function MovieListObject(props) {
+    return (
+        <div className="movieItem" onClick={() => {console.log("Hello Boi")}}>
+            <span className="stext movieRank">{props.movieInfo["rank"]}</span>
+            <img className="movieThumb" src={props.movieInfo["image"]}></img>
+            <a className="stext movieTitle">{props.movieInfo["title"]}</a>
+        </div>
+    )
+}
+
+function movieApp() {
+    return (
+        <div>
+            <MovieListObject movieInfo={movieData[0]}/>
+        </div>
+    )
+}
+
+
+
+
 // a lil easter egg i guess? its also just a reference component for the other components im making
 function madeBy() {
   
@@ -134,7 +150,24 @@ function madeBy() {
     }
   }
 
-  return <p className="stext centerText" onClick={updateState}>Made with {emojis[state]} by <a href="https://github.com/misaalanshori" target="_blank">M Isa Al Anshori</a></p>
+  return (<>
+    <p className="stext centerText" onClick={updateState}>
+        Made with {emojis[state]} by <a href="https://github.com/misaalanshori" target="_blank">M Isa Al Anshori</a>
+    </p>
+  </>)
 }
 
-ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
+
+
+
+// this is where the code *really* starts
+
+var movieData;
+// Starting point for rendering the list
+getJSON().then(retval => {
+    movieData = retval
+    renderList(retval)
+    ReactDOM.render(e(movieApp), document.querySelector('#movieApp'));
+    ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
+})
+

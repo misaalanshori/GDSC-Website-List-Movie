@@ -81,14 +81,8 @@ function openModal(context, modal) {
   let itemNum = context.getElementsByClassName("movieRank")[0].innerHTML;
   renderModal(itemNum, movieData);
   modal.style.display = "block";
-}
+} // Stuff for the modal
 
-var movieData; // Starting point for rendering the list
-
-getJSON().then(retval => {
-  movieData = retval;
-  renderList(retval);
-}); // Stuff for the modal
 
 var movieModal = document.getElementById("movieModal");
 var closeButton = document.getElementsByClassName("closeModal")[0];
@@ -109,7 +103,30 @@ window.onclick = function (event) {
 
 
 const e = React.createElement;
-const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"]; // a lil easter egg i guess? its also just a reference component for the other components im making
+const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"];
+
+function MovieListObject(props) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "movieItem",
+    onClick: () => {
+      console.log("Hello Boi");
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "stext movieRank"
+  }, props.movieInfo["rank"]), /*#__PURE__*/React.createElement("img", {
+    className: "movieThumb",
+    src: props.movieInfo["image"]
+  }), /*#__PURE__*/React.createElement("a", {
+    className: "stext movieTitle"
+  }, props.movieInfo["title"]));
+}
+
+function movieApp() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MovieListObject, {
+    movieInfo: movieData[0]
+  }));
+} // a lil easter egg i guess? its also just a reference component for the other components im making
+
 
 function madeBy() {
   const [state, setState] = React.useState(0);
@@ -122,13 +139,21 @@ function madeBy() {
     }
   }
 
-  return /*#__PURE__*/React.createElement("p", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
     className: "stext centerText",
     onClick: updateState
   }, "Made with ", emojis[state], " by ", /*#__PURE__*/React.createElement("a", {
     href: "https://github.com/misaalanshori",
     target: "_blank"
-  }, "M Isa Al Anshori"));
-}
+  }, "M Isa Al Anshori")));
+} // this is where the code *really* starts
 
-ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
+
+var movieData; // Starting point for rendering the list
+
+getJSON().then(retval => {
+  movieData = retval;
+  renderList(retval);
+  ReactDOM.render(e(movieApp), document.querySelector('#movieApp'));
+  ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
+});
