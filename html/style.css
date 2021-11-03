@@ -100,8 +100,20 @@ p {
 }
 
 .movieItem {
+    display: grid;
+    grid-template-columns: 1fr 2em; 
+    grid-template-areas: "a b"; 
+
     margin-top: 12px;
-    padding: 8px;
+    padding: 0px;
+    
+}
+
+.movieItemContents {
+    height: 100%;
+    grid-area: "a";
+    padding: 8px 4px 0px 4px;
+    min-width: 25vw;
     border: none;
     border-radius: 4px;
     white-space: nowrap;
@@ -109,8 +121,22 @@ p {
     text-overflow: clip;
 }
 
-.movieItem:hover {
+.movieItemContents:hover {
     background-color: tomato;
+}
+
+.actionButton {
+    display: inline !important;
+    height: 100%;
+    font-size: 1.3em;
+    color: var(--bigtext);
+    grid-area: "b";
+    padding-top: 14px;
+    padding-left: 4px;
+}
+
+.actionButton:hover {
+    color: greenyellow;
 }
 
 .movieRank {
@@ -228,3 +254,43 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
   }
+
+
+.dropdown {
+    position: fixed;
+    width:60px;
+	height:60px;
+    bottom: 24px;
+    right: 24px;
+    background-color:#0C9;
+	color:#FFF;
+	border-radius:50%;
+    display: inline-block;
+    text-align:center;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    bottom: 81px;
+    right: 16px;
+    border: solid slategray;
+    border-width: thin;
+    border-radius: 4px;
+    padding: 0px 16px 12px 16px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: left;
+    background-color: var(--bg);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.floatContents {
+    margin-top:18px;
+    font-size: 1.5em;
+}
+

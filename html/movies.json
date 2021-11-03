@@ -6,7 +6,8 @@
         "releasedate": "1994",
         "image": "./img/theshawshankredemption.jpg",
         "desc": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-        "link": "https://www.imdb.com/title/tt0111161/"
+        "link": "https://www.imdb.com/title/tt0111161/",
+        "uniqueKey": "4d595f6446b5f5a94cbd221a4c4166ff"
     },
     {
         "rank": 2,
@@ -15,25 +16,28 @@
         "releasedate": "1972",
         "image": "./img/thegodfather.jpg",
         "desc": "An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.",
-        "link": "https://www.imdb.com/title/tt0068646/"
+        "link": "https://www.imdb.com/title/tt0068646/",
+        "uniqueKey": "b426058a04a41a18c07bfd6f44fe516c"
     },
     {
         "rank": 3,
         "title": "The Godfather: Part II",
-        "rating": 9.0,
+        "rating": 9,
         "releasedate": "1974",
         "image": "./img/thegodfatherpartii.jpg",
         "desc": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
-        "link": "https://www.imdb.com/title/tt0071562/"
+        "link": "https://www.imdb.com/title/tt0071562/",
+        "uniqueKey": "73d6c3d395de91f98cae3a2642440d39"
     },
     {
         "rank": 4,
         "title": "The Dark Knight",
-        "rating": 9.0,
+        "rating": 9,
         "releasedate": "2008",
         "image": "./img/thedarkknight.jpg",
         "desc": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-        "link": "https://www.imdb.com/title/tt0468569/"
+        "link": "https://www.imdb.com/title/tt0468569/",
+        "uniqueKey": "17177cb2903e557d00434246cfc03037"
     },
     {
         "rank": 5,
@@ -42,7 +46,8 @@
         "releasedate": "1957",
         "image": "./img/12angrymen.jpg",
         "desc": "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict.",
-        "link": "https://www.imdb.com/title/tt0050083/"
+        "link": "https://www.imdb.com/title/tt0050083/",
+        "uniqueKey": "f57ca3bff7f50a76b17436036b6d0812"
     },
     {
         "rank": 6,
@@ -51,7 +56,8 @@
         "releasedate": "1993",
         "image": "./img/schindlerslist.jpg",
         "desc": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
-        "link": "https://www.imdb.com/title/tt0108052/"
+        "link": "https://www.imdb.com/title/tt0108052/",
+        "uniqueKey": "d1cdcee9d57145c790bf4d0b8239865d"
     },
     {
         "rank": 7,
@@ -60,7 +66,8 @@
         "releasedate": "2003",
         "image": "./img/lotrthereturnoftheking.jpg",
         "desc": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
-        "link": "https://www.imdb.com/title/tt0167260/"
+        "link": "https://www.imdb.com/title/tt0167260/",
+        "uniqueKey": "722cd6e2040de62c62665f42e3b67173"
     },
     {
         "rank": 8,
@@ -69,7 +76,8 @@
         "releasedate": "1994",
         "image": "./img/pulpfiction.jpg",
         "desc": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-        "link": "https://www.imdb.com/title/tt0110912/"
+        "link": "https://www.imdb.com/title/tt0110912/",
+        "uniqueKey": "e45a00373a08432da004bc1938612216"
     },
     {
         "rank": 9,
@@ -78,7 +86,8 @@
         "releasedate": "1966",
         "image": "./img/thegoodthebadtheugly.jpg",
         "desc": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery.",
-        "link": "https://www.imdb.com/title/tt0060196/"
+        "link": "https://www.imdb.com/title/tt0060196/",
+        "uniqueKey": "e686ff909487fddcddad1c0b8d2eb95b"
     },
     {
         "rank": 10,
@@ -87,7 +96,8 @@
         "releasedate": "2001",
         "image": "./img/lotrthefellowshipofthering.jpg",
         "desc": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-        "link": "https://www.imdb.com/title/tt0120737/"
+        "link": "https://www.imdb.com/title/tt0120737/",
+        "uniqueKey": "46bed30003b9434866272be09a8bac2d"
     },
     {
         "rank": 11,
@@ -96,7 +106,8 @@
         "releasedate": "1999",
         "image": "./img/fightclub.jpg",
         "desc": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
-        "link": "https://www.imdb.com/title/tt0137523/"
+        "link": "https://www.imdb.com/title/tt0137523/",
+        "uniqueKey": "f793eaa8cba923e657961ba71de7938e"
     },
     {
         "rank": 12,
@@ -105,7 +116,8 @@
         "releasedate": "1994",
         "image": "./img/forrestgump.jpg",
         "desc": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-        "link": "https://www.imdb.com/title/tt0109830/"
+        "link": "https://www.imdb.com/title/tt0109830/",
+        "uniqueKey": "ad91c333cc264f5e26394bc3a690e0f8"
     },
     {
         "rank": 13,
@@ -114,7 +126,8 @@
         "releasedate": "2010",
         "image": "./img/inception.jpg",
         "desc": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-        "link": "https://www.imdb.com/title/tt1375666/"
+        "link": "https://www.imdb.com/title/tt1375666/",
+        "uniqueKey": "b0e49e2bd56d8807a1ea4cf2f46ba95b"
     },
     {
         "rank": 14,
@@ -123,7 +136,8 @@
         "releasedate": "2002",
         "image": "./img/lotrthetwotowers.jpg",
         "desc": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
-        "link": "https://www.imdb.com/title/tt0167261/"
+        "link": "https://www.imdb.com/title/tt0167261/",
+        "uniqueKey": "27e18beb32e34233f5be2e62a3a06443"
     },
     {
         "rank": 15,
@@ -132,7 +146,8 @@
         "releasedate": "1980",
         "image": "./img/starwarsepsv.jpg",
         "desc": "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett",
-        "link": "https://www.imdb.com/title/tt0080684/"
+        "link": "https://www.imdb.com/title/tt0080684/",
+        "uniqueKey": "77603a691d4603c4bebd63c9813a75c4"
     },
     {
         "rank": 16,
@@ -141,7 +156,8 @@
         "releasedate": "1999",
         "image": "./img/thematrix.jpg",
         "desc": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-        "link": "https://www.imdb.com/title/tt0133093/"
+        "link": "https://www.imdb.com/title/tt0133093/",
+        "uniqueKey": "ab52c378ce3687132d3633178a11973f"
     },
     {
         "rank": 17,
@@ -150,7 +166,8 @@
         "releasedate": "1990",
         "image": "./img/goodfellas.jpg",
         "desc": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.",
-        "link": "https://www.imdb.com/title/tt0099685/"
+        "link": "https://www.imdb.com/title/tt0099685/",
+        "uniqueKey": "327ee12f38665f7c9f5f071eb58f41a2"
     },
     {
         "rank": 18,
@@ -159,16 +176,18 @@
         "releasedate": "1975",
         "image": "./img/oneflewoverthecuckoosnest.jpg",
         "desc": "A criminal pleads insanity and is admitted to a mental institution, where he rebels against the oppressive nurse and rallies up the scared patients.",
-        "link": "https://www.imdb.com/title/tt0073486/"
+        "link": "https://www.imdb.com/title/tt0073486/",
+        "uniqueKey": "16dbf0a79503f58a49cd5f216cb9d729"
     },
     {
-        "rank": 19, 
+        "rank": 19,
         "title": "Seven Samurai",
         "rating": 8.6,
         "releasedate": "1954",
         "image": "./img/sevensamurai.jpg",
         "desc": "A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves.",
-        "link": "https://www.imdb.com/title/tt0047478/"
+        "link": "https://www.imdb.com/title/tt0047478/",
+        "uniqueKey": "83935d538f08a1c3414b98ea6cea49e4"
     },
     {
         "rank": 20,
@@ -177,7 +196,7 @@
         "releasedate": "1995",
         "image": "./img/se7en.jpg",
         "desc": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
-        "link": "https://www.imdb.com/title/tt0114369/"
+        "link": "https://www.imdb.com/title/tt0114369/",
+        "uniqueKey": "2b9a61768cc4e56c3e89dbadf881a800"
     }
-    
 ]

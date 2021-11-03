@@ -5,6 +5,16 @@ async function getJSON() {
     return movieJSON
 }
 
+JSONStorage = {
+"write": (objName, contents) => {
+    window.localStorage.setItem(objName, JSON.stringify(contents.filter(Boolean)))
+    return JSONStorage.read(objName)
+},
+"read": (objName) => {
+    let data = JSON.parse(window.localStorage.getItem(objName))
+    return data ? data.filter(Boolean) : []
+}}
+
 // ReactJS section starts here
 const e = React.createElement;
 const emojis = ["❤️","🩸","🕒","🧠","💪"] 
@@ -50,14 +60,20 @@ function StarRating(props) {
 
 // a component for each movie on the list
 function MovieListObject(props) {
-
+    
     if ((props.search == "") || (props.search.every(term => props.movieInfo.title.toLowerCase().includes(term.toLowerCase())))) {
-        return (
-            <div className="movieItem" onClick={() => {props.openModal(props.movieInfo)}}>
-                <span className="stext movieRank">{props.movieInfo["rank"]}</span>
-                <img className="movieThumb" src={props.movieInfo["image"]}></img>
-                <a className="stext movieTitle">{props.movieInfo["title"]}</a>
+        return (<>
+            <div className="movieItem" >
+                <span className="movieItemContents" onClick={() => {props.openModal(props.movieInfo)}}>
+                    <span className="stext movieRank">{props.movieInfo["rank"]}</span>
+                    <img className="movieThumb" src={props.movieInfo["image"]}></img>
+                    <a className="stext movieTitle">{props.movieInfo["title"]}</a>  
+                </span>
+                       
+                    {props.action}    
             </div>
+
+            </>
         )
     } else {
         return (<></>)
@@ -97,34 +113,92 @@ function MovieModalPopUp(props) {
     )
 }
 
+function FloatingWatchLater(props) {
+    return (
+        <div className="dropdown">
+
+            <span className="fa-solid fa-clapperboard floatContents"></span>
+
+            <div className="dropdown-content">
+                <p className="sltext">Watch later:</p>
+                {props.contents.map((data) => <MovieListObject 
+                key={data["uniqueKey"]} 
+                movieInfo={data} 
+                search= {""}
+                openModal={() => {props.modalOpener(data)}}
+                action={<ActionButton logo={<span className="fa-solid fa-trash actionButton"></span>} action={() => {props.favorite.delete(data)}}/>}
+            />)}
+            </div>
+        </div>
+  
+    )
+}
+
+function ActionButton(prop) {
+    return (
+        <span className="actionButton" onClick={prop.action}>
+            {prop.logo}
+        </span>
+    )
+
+}
+
 // Main component, contains child components for the the search bar, movie list, and modal
 function movieApp() {
     const [searchSentence, setSearch] = React.useState("")
     const [modalState, setModalState] = React.useState({"open": false, "contents": []})
+    const [movieFavorites, setMovieFavorites] = React.useState(JSONStorage.read("favorites"))
     const searchTerm = searchSentence.split(" ") 
+
+    const uniqueCheck = (arr, obj) => {
+        return 
+    }
+
+    favorites = {
+        add: (obj) => {
+            if (movieFavorites.some((element)=>{return element.uniqueKey == obj.uniqueKey})) {
+                alert("That movie is already added!")
+            } else {
+                setMovieFavorites(JSONStorage.write("favorites", [...movieFavorites, obj]))
+            }
+        },
+        delete: (obj) => {
+            let currentArray = movieFavorites
+            delete currentArray[currentArray.indexOf(obj)]
+            setMovieFavorites(JSONStorage.write("favorites", currentArray))
+
+        }
+    }
 
     return (<>
 
         <h1>Top 20 Movies</h1>
         <p className="ltext">Top 20 Movies, data sourced from the IMDB (Now with ReactJS!)</p>
 
-        <input type="text" placeholder="Search for a movie title" value={searchSentence} onChange={(event) => {setSearch(event.target.value)}} />
+        <input 
+        type="text" 
+        placeholder="Search for a movie title" 
+        value={searchSentence} 
+        onChange={(event) => {setSearch(event.target.value)}} />
 
         <div className="movieList">
             {movieData.map((data)=>
+            
             <MovieListObject 
-                key={data["rank"]} 
+                key={data["uniqueKey"]} 
                 movieInfo={data} 
                 search={searchTerm} 
                 openModal={() => {setModalState({"open": true, "contents": data})}}
+                action={<ActionButton logo={<span className="fa-solid fa-plus actionButton"></span>} action={() => {favorites.add(data)}}/>}
             />)}
         </div>
 
-        {modalState.open ? <MovieModalPopUp 
+        {modalState.open 
+        ? <MovieModalPopUp 
         mState={modalState} 
-        closeModal={()=>{setModalState({"open": false, "contents": []})}}
-        /> : <></>}
-
+        closeModal={()=>{setModalState({"open": false, "contents": []})}}/> 
+        : <></>}
+        <FloatingWatchLater modalOpener = {(dat) => setModalState({"open": true, "contents": dat})} contents={movieFavorites} favorite={favorites}/>
     </>)
 }
 
@@ -164,3 +238,5 @@ getJSON().then(retval => {
     ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
 })
 
+
+// this code is complete garbage, im so sorry that you had to read all that

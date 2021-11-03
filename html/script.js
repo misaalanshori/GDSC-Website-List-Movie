@@ -3,8 +3,18 @@ async function getJSON() {
   const response = await fetch("movies.json");
   const movieJSON = await response.json();
   return movieJSON;
-} // ReactJS section starts here
+}
 
+JSONStorage = {
+  "write": (objName, contents) => {
+    window.localStorage.setItem(objName, JSON.stringify(contents.filter(Boolean)));
+    return JSONStorage.read(objName);
+  },
+  "read": objName => {
+    let data = JSON.parse(window.localStorage.getItem(objName));
+    return data ? data.filter(Boolean) : [];
+  }
+}; // ReactJS section starts here
 
 const e = React.createElement;
 const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"];
@@ -53,8 +63,10 @@ function StarRating(props) {
 
 function MovieListObject(props) {
   if (props.search == "" || props.search.every(term => props.movieInfo.title.toLowerCase().includes(term.toLowerCase()))) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "movieItem",
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "movieItem"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "movieItemContents",
       onClick: () => {
         props.openModal(props.movieInfo);
       }
@@ -65,7 +77,7 @@ function MovieListObject(props) {
       src: props.movieInfo["image"]
     }), /*#__PURE__*/React.createElement("a", {
       className: "stext movieTitle"
-    }, props.movieInfo["title"]));
+    }, props.movieInfo["title"])), props.action));
   } else {
     return /*#__PURE__*/React.createElement(React.Fragment, null);
   }
@@ -106,6 +118,40 @@ function MovieModalPopUp(props) {
     href: props.mState.contents.link,
     target: "_blank"
   }, "IMDB Page"))));
+}
+
+function FloatingWatchLater(props) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "dropdown"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "fa-solid fa-clapperboard floatContents"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-content"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "sltext"
+  }, "Watch later:"), props.contents.map(data => /*#__PURE__*/React.createElement(MovieListObject, {
+    key: data["uniqueKey"],
+    movieInfo: data,
+    search: "",
+    openModal: () => {
+      props.modalOpener(data);
+    },
+    action: /*#__PURE__*/React.createElement(ActionButton, {
+      logo: /*#__PURE__*/React.createElement("span", {
+        className: "fa-solid fa-trash actionButton"
+      }),
+      action: () => {
+        props.favorite.delete(data);
+      }
+    })
+  }))));
+}
+
+function ActionButton(prop) {
+  return /*#__PURE__*/React.createElement("span", {
+    className: "actionButton",
+    onClick: prop.action
+  }, prop.logo);
 } // Main component, contains child components for the the search bar, movie list, and modal
 
 
@@ -115,7 +161,29 @@ function movieApp() {
     "open": false,
     "contents": []
   });
+  const [movieFavorites, setMovieFavorites] = React.useState(JSONStorage.read("favorites"));
   const searchTerm = searchSentence.split(" ");
+
+  const uniqueCheck = (arr, obj) => {
+    return;
+  };
+
+  favorites = {
+    add: obj => {
+      if (movieFavorites.some(element => {
+        return element.uniqueKey == obj.uniqueKey;
+      })) {
+        alert("That movie is already added!");
+      } else {
+        setMovieFavorites(JSONStorage.write("favorites", [...movieFavorites, obj]));
+      }
+    },
+    delete: obj => {
+      let currentArray = movieFavorites;
+      delete currentArray[currentArray.indexOf(obj)];
+      setMovieFavorites(JSONStorage.write("favorites", currentArray));
+    }
+  };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Top 20 Movies"), /*#__PURE__*/React.createElement("p", {
     className: "ltext"
   }, "Top 20 Movies, data sourced from the IMDB (Now with ReactJS!)"), /*#__PURE__*/React.createElement("input", {
@@ -128,7 +196,7 @@ function movieApp() {
   }), /*#__PURE__*/React.createElement("div", {
     className: "movieList"
   }, movieData.map(data => /*#__PURE__*/React.createElement(MovieListObject, {
-    key: data["rank"],
+    key: data["uniqueKey"],
     movieInfo: data,
     search: searchTerm,
     openModal: () => {
@@ -136,7 +204,15 @@ function movieApp() {
         "open": true,
         "contents": data
       });
-    }
+    },
+    action: /*#__PURE__*/React.createElement(ActionButton, {
+      logo: /*#__PURE__*/React.createElement("span", {
+        className: "fa-solid fa-plus actionButton"
+      }),
+      action: () => {
+        favorites.add(data);
+      }
+    })
   }))), modalState.open ? /*#__PURE__*/React.createElement(MovieModalPopUp, {
     mState: modalState,
     closeModal: () => {
@@ -145,7 +221,14 @@ function movieApp() {
         "contents": []
       });
     }
-  }) : /*#__PURE__*/React.createElement(React.Fragment, null));
+  }) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement(FloatingWatchLater, {
+    modalOpener: dat => setModalState({
+      "open": true,
+      "contents": dat
+    }),
+    contents: movieFavorites,
+    favorite: favorites
+  }));
 } // a lil easter egg i guess? its also just a reference component for the other components im making
 
 
@@ -176,4 +259,4 @@ getJSON().then(retval => {
   movieData = retval;
   ReactDOM.render(e(movieApp), document.querySelector('#movieApp'));
   ReactDOM.render(e(madeBy), document.querySelector('#madeByCredits'));
-});
+}); // this code is complete garbage, im so sorry that you had to read all that
