@@ -1,3 +1,12 @@
+const e = React.createElement;
+const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"];
+const stars = [/*#__PURE__*/React.createElement("span", {
+  className: "fullstar fa fa-solid fa-star"
+}), /*#__PURE__*/React.createElement("span", {
+  className: "halfstar fa fa-solid fa-star-half-stroke"
+}), /*#__PURE__*/React.createElement("span", {
+  className: "emptystar fa fa-regular fa-star"
+})];
 JSONStorage = {
   "write": (objName, contents) => {
     window.localStorage.setItem(objName, JSON.stringify(contents.filter(Boolean)));
@@ -31,6 +40,7 @@ function madeBy() {
 
 function ActionButton(prop) {
   return /*#__PURE__*/React.createElement("span", {
+    style: prop.style,
     className: "actionButton",
     onClick: prop.action
   }, prop.logo);
@@ -49,7 +59,7 @@ function MovieListObject(props) {
       className: "stext movieRank"
     }, props.movieInfo["rank"]), /*#__PURE__*/React.createElement("img", {
       className: "movieThumb",
-      src: props.movieInfo["image"]
+      src: (props.appendurl ? props.appendurl : "") + props.movieInfo["image"]
     }), /*#__PURE__*/React.createElement("a", {
       className: "stext movieTitle"
     }, props.movieInfo["title"])), props.action));
@@ -71,7 +81,7 @@ function MovieModalPopUp(props) {
     className: "movieInfo"
   }, /*#__PURE__*/React.createElement("img", {
     className: "moviePoster",
-    src: props.mState.contents.image
+    src: (props.appendurl ? props.appendurl : "") + props.mState.contents.image
   }), /*#__PURE__*/React.createElement("div", {
     className: "aboutMovie"
   }, /*#__PURE__*/React.createElement("a", {

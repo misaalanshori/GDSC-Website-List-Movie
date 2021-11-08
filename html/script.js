@@ -4,18 +4,9 @@ async function getJSON() {
   const movieJSON = await response.json();
   return movieJSON;
 } // ReactJS section starts here
-
-
-const e = React.createElement;
-const emojis = ["❤️", "🩸", "🕒", "🧠", "💪"];
-const stars = [/*#__PURE__*/React.createElement("span", {
-  className: "fullstar fa fa-solid fa-star"
-}), /*#__PURE__*/React.createElement("span", {
-  className: "halfstar fa fa-solid fa-star-half-stroke"
-}), /*#__PURE__*/React.createElement("span", {
-  className: "emptystar fa fa-regular fa-star"
-})]; // this is a component for the star ratings, still have not figured out any better way to do this
+// this is a component for the star ratings, still have not figured out any better way to do this
 // a component for each movie on the list
+
 
 function FloatingWatchLater(props) {
   return /*#__PURE__*/React.createElement("div", {
@@ -24,9 +15,34 @@ function FloatingWatchLater(props) {
     className: "fa-solid fa-clapperboard floatContents"
   }), /*#__PURE__*/React.createElement("div", {
     className: "dropdown-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wishlistActions"
   }, /*#__PURE__*/React.createElement("p", {
-    className: "sltext"
-  }, "Wishlist:"), props.contents.map(data => /*#__PURE__*/React.createElement(MovieListObject, {
+    className: "sltext",
+    style: {
+      gridArea: "a"
+    }
+  }, "Wishlist:"), /*#__PURE__*/React.createElement(ActionButton, {
+    style: {
+      gridArea: "b"
+    },
+    logo: /*#__PURE__*/React.createElement("span", {
+      className: "fa-solid fa-up-right-from-square actionButton-small"
+    }),
+    action: () => {
+      window.open("wishlist");
+    }
+  }), /*#__PURE__*/React.createElement(ActionButton, {
+    style: {
+      gridArea: "c"
+    },
+    logo: /*#__PURE__*/React.createElement("span", {
+      className: "fa-solid fa-arrows-rotate actionButton-small"
+    }),
+    action: () => {
+      props.refresh();
+    }
+  })), props.contents.length ? props.contents.map(data => /*#__PURE__*/React.createElement(MovieListObject, {
     key: data["uniqueKey"],
     movieInfo: data,
     search: "",
@@ -41,7 +57,9 @@ function FloatingWatchLater(props) {
         props.favorite.delete(data);
       }
     })
-  }))));
+  })) : /*#__PURE__*/React.createElement("p", {
+    className: "ltext"
+  }, "Your wishlist is empty!")));
 } // Main component, contains child components for the the search bar, movie list, and modal
 
 
@@ -72,8 +90,20 @@ function movieApp() {
       let currentArray = movieFavorites;
       delete currentArray[currentArray.indexOf(obj)];
       setMovieFavorites(JSONStorage.write("favorites", currentArray));
+    },
+    erase: () => {
+      setMovieFavorites(JSONStorage.write("favorites", []));
+    },
+    reload: () => {
+      setMovieFavorites(JSONStorage.read("favorites"));
     }
   };
+  React.useEffect(() => {
+    window.addEventListener("storage", favorites.reload, false);
+    return () => {
+      window.removeEventListener("storage", favorites.reload);
+    };
+  });
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Top 20 Movies"), /*#__PURE__*/React.createElement("p", {
     className: "ltext"
   }, "Top 20 Movies, data sourced from the IMDB (Now with ReactJS!)"), /*#__PURE__*/React.createElement("input", {
@@ -117,6 +147,7 @@ function movieApp() {
       "contents": dat
     }),
     contents: movieFavorites,
+    refresh: favorites.reload,
     favorite: favorites
   }));
 } // this is where the code *really* starts

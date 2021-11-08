@@ -139,6 +139,29 @@ p {
     color: greenyellow;
 }
 
+.actionButton-small {
+    display: inline !important;
+    font-size: 0.8em !important;
+    color: var(--bigtext);
+}
+
+.actionButton-small:hover {
+    color: greenyellow;
+}
+
+.wishlistActions {
+    display: grid;
+    grid-template-columns: 1fr 2em 2em; 
+    grid-template-areas: "a b c"; 
+}
+
+.wishlistSearchbarActions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2em 2em; 
+    grid-template-areas: "a b c"; 
+}
+
 .movieRank {
     border-right: solid thin #666;
     padding: 12px 4px 12px 0px;

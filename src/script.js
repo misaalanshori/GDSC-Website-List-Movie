@@ -8,13 +8,7 @@ async function getJSON() {
 
 
 // ReactJS section starts here
-const e = React.createElement;
-const emojis = ["❤️","🩸","🕒","🧠","💪"] 
-const stars = [
-    (<span className="fullstar fa fa-solid fa-star"></span>),
-    (<span className="halfstar fa fa-solid fa-star-half-stroke"></span>),
-    (<span className="emptystar fa fa-regular fa-star"></span>)
-] 
+
 
 // this is a component for the star ratings, still have not figured out any better way to do this
 
@@ -31,14 +25,19 @@ function FloatingWatchLater(props) {
             <span className="fa-solid fa-clapperboard floatContents"></span>
 
             <div className="dropdown-content">
-                <p className="sltext">Wishlist:</p>
-                {props.contents.map((data) => <MovieListObject 
+                <div className="wishlistActions">
+                <p className="sltext" style={{gridArea: "a"}}>Wishlist:</p>
+                <ActionButton style={{gridArea: "b"}} logo={<span className="fa-solid fa-up-right-from-square actionButton-small"></span>} action={() => {window.open("wishlist")}}/>
+                <ActionButton style={{gridArea: "c"}} logo={<span className="fa-solid fa-arrows-rotate actionButton-small"></span>} action={() => {props.refresh()}}/>
+                </div>
+                
+                {props.contents.length ? props.contents.map((data) => <MovieListObject 
                 key={data["uniqueKey"]} 
                 movieInfo={data} 
                 search= {""}
                 openModal={() => {props.modalOpener(data)}}
                 action={<ActionButton logo={<span className="fa-solid fa-trash actionButton"></span>} action={() => {props.favorite.delete(data)}}/>}
-            />)}
+            />) : <p className="ltext">Your wishlist is empty!</p>}
             </div>
         </div>
   
@@ -51,6 +50,8 @@ function movieApp() {
     const [modalState, setModalState] = React.useState({"open": false, "contents": []})
     const [movieFavorites, setMovieFavorites] = React.useState(JSONStorage.read("favorites"))
     const searchTerm = searchSentence.split(" ") 
+
+    
 
     const uniqueCheck = (arr, obj) => {
         return 
@@ -69,8 +70,21 @@ function movieApp() {
             delete currentArray[currentArray.indexOf(obj)]
             setMovieFavorites(JSONStorage.write("favorites", currentArray))
 
+        },
+        erase: () => {
+            setMovieFavorites(JSONStorage.write("favorites", []))
+        },
+        reload: () => {
+            setMovieFavorites(JSONStorage.read("favorites"))
         }
     }
+
+    React.useEffect(
+        () => {
+            window.addEventListener("storage", favorites.reload, false)
+            return () => {window.removeEventListener("storage", favorites.reload)}
+        }
+    )
 
     return (<>
 
@@ -100,7 +114,7 @@ function movieApp() {
         mState={modalState} 
         closeModal={()=>{setModalState({"open": false, "contents": []})}}/> 
         : <></>}
-        <FloatingWatchLater modalOpener = {(dat) => setModalState({"open": true, "contents": dat})} contents={movieFavorites} favorite={favorites}/>
+        <FloatingWatchLater modalOpener = {(dat) => setModalState({"open": true, "contents": dat})} contents={movieFavorites} refresh={favorites.reload} favorite={favorites}/>
     </>)
 }
 

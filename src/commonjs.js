@@ -1,3 +1,11 @@
+const e = React.createElement;
+const emojis = ["❤️","🩸","🕒","🧠","💪"] 
+const stars = [
+    (<span className="fullstar fa fa-solid fa-star"></span>),
+    (<span className="halfstar fa fa-solid fa-star-half-stroke"></span>),
+    (<span className="emptystar fa fa-regular fa-star"></span>)
+] 
+
 JSONStorage = {
     "write": (objName, contents) => {
         window.localStorage.setItem(objName, JSON.stringify(contents.filter(Boolean)))
@@ -32,7 +40,7 @@ function madeBy() {
   
 function ActionButton(prop) {
     return (
-        <span className="actionButton" onClick={prop.action}>
+        <span style={prop.style} className="actionButton" onClick={prop.action}>
             {prop.logo}
         </span>
     )
@@ -46,7 +54,7 @@ function MovieListObject(props) {
             <div className="movieItem" >
                 <span className="movieItemContents" onClick={() => {props.openModal(props.movieInfo)}}>
                     <span className="stext movieRank">{props.movieInfo["rank"]}</span>
-                    <img className="movieThumb" src={props.movieInfo["image"]}></img>
+                    <img className="movieThumb" src={(props.appendurl ? props.appendurl : "") + props.movieInfo["image"]}></img>
                     <a className="stext movieTitle">{props.movieInfo["title"]}</a>  
                 </span>
                        
@@ -70,7 +78,7 @@ function MovieModalPopUp(props) {
             
             <div className="movieInfo">
 
-                <img className="moviePoster" src={props.mState.contents.image}/>
+                <img className="moviePoster" src={(props.appendurl ? props.appendurl : "") + props.mState.contents.image}/>
 
                 <div className="aboutMovie"> 
                     <a className="sltext">{props.mState.contents.title}</a>
