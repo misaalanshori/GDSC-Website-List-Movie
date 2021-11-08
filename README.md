@@ -25,4 +25,6 @@ Untuk kedepannya tetep pake data hardcoded di JSON, karena kayaknya kalau nyari 
 
 ![Movie Modal](https://github.com/misaalanshori/GDSC-Website-List-Movie/blob/master/GHImg/modalfeature.png?raw=true)
 
-![Watch Later List](https://github.com/misaalanshori/GDSC-Website-List-Movie/blob/master/GHImg/watchlaterfeature.png?raw=true)
+![Wishlist Dropdown](https://github.com/misaalanshori/GDSC-Website-List-Movie/blob/master/GHImg/wishlistfeature.png?raw=true)
+
+![Wishlist Page](https://github.com/misaalanshori/GDSC-Website-List-Movie/blob/master/GHImg/wishlistpage.png?raw=true)
